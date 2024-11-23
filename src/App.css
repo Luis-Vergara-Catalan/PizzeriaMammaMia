@@ -76,3 +76,8 @@ p {
   background-color: #212429;  
   color: white;
 }
+
+.title{
+    text-align: center;
+    padding-top: 30px;
+}
