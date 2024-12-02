@@ -4,16 +4,18 @@ import Home from './pages/Home'
 import Footer from './components/Footer'
 import Register from './components/Register'
 import Login from './components/Login'
+import Cart from './components/Cart'
 
 function App() {
 
   return (
     <>
       <NavBar/>
-      <Home/>
-      <Register/>
-      <Login/>
-      <Footer/>
+      {/*<Home/>*/}
+      {/*<Register/>*/}
+      {/*<Login/>*/}
+      <Cart/>
+      {/*<Footer/>*/}
     </>
   )
 }
