@@ -3,7 +3,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button'; /*boton */
 import { TiShoppingCart } from "react-icons/ti"; /*carrito de compras */
 import { PiEyesFill, PiPizza } from "react-icons/pi"; /*ojitos */
-import { formatCurr } from '../../utils/formatCurr';
+import { formatCurr } from '../utils/formatCurr';
 import React, { useEffect, useState } from 'react'
 
 export default function Pizza() {

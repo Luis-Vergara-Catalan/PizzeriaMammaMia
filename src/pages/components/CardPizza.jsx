@@ -14,7 +14,7 @@ useEffect (() => {
     .then((res)=> res.json())
     .then((data) => {
     setPizza(data)
-    console.log(data)
+
     })
     }, [])
 
