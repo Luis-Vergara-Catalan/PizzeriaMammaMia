@@ -1,38 +1,22 @@
-import { pizzaCart } from '../data/pizzas';
-import { useState } from 'react';
+import { useContext} from 'react';
 import { formatCurr } from '../utils/formatCurr';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
+import { CartContext } from '../context/CartContext';
 
 function Cart() {
 
-const [pizzasCarrito, setPizzasCarrito] = useState(pizzaCart);
-    
-    const handleAgregar = (index) => {
-    pizzasCarrito[index].count++;
-    setPizzasCarrito([...pizzasCarrito]);
-  }
-
-   const handleQuitar = (index) => {
-    pizzasCarrito[index].count--;    
-    setPizzasCarrito([...pizzasCarrito.filter((pizza) => pizza.count > 0)]);
-  }
-
-    const total = () => {
-      return (
-        pizzasCarrito.reduce((sumaTotal, pizza) => 
-          sumaTotal + pizza.price * pizza.count, 0));
-  }
+const { totalPrice, pizzas} = useContext(CartContext)
 
   return (
     
     <div>
     <h1 className='tituloCart'>Detalles del pedido:</h1>
     {
-      pizzasCarrito.map((pizza, index) => {
+      pizzas.map((pizza, index) => {
 
       return (<div className='d-flex' key={pizza.id}>
       <Container>
@@ -69,7 +53,7 @@ const [pizzasCarrito, setPizzasCarrito] = useState(pizzaCart);
       </div>)
       })
     } 
-    <h1 className='tituloCart'>Precio total: $ {formatCurr(total())} </h1> 
+    <h1 className='tituloCart'>Precio total: $ {formatCurr(totalPrice)} </h1> 
     </div>
   )
 }
