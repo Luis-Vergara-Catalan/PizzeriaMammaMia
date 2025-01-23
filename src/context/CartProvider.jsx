@@ -7,8 +7,7 @@ export const CartProvider = ( {children} ) => {
     const [cart, setCart] = useState ([])
     const [totalPrice, setTotalPrice] = useState (0)
     const [pizzas, setPizzas] = useState([]);
-
-
+  
   useEffect(() => {
     fetch('http://localhost:5000/api/pizzas') 
       .then((response) => {
@@ -46,8 +45,15 @@ export const CartProvider = ( {children} ) => {
     }
 
 
+  const [ token, setToken] = useState(true);
+
+  const logout = () => {
+    setToken(false)
+  }
+
+
   return (
-    <CartContext.Provider value={{cart, totalPrice, addToCart, pizzas, handleAgregar, handleQuitar}}>
+    <CartContext.Provider value={{cart, totalPrice, addToCart, pizzas, handleAgregar, handleQuitar, pizzasCarrito, setPizzasCarrito, token, setToken, logout}}>
         {children}
     </CartContext.Provider>
   )

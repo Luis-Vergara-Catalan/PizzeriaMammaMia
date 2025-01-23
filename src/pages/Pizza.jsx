@@ -5,12 +5,17 @@ import { TiShoppingCart } from "react-icons/ti"; /*carrito de compras */
 import { PiEyesFill, PiPizza } from "react-icons/pi"; /*ojitos */
 import { formatCurr } from '../utils/formatCurr';
 import React, { useEffect, useState } from 'react'
+import {useParams} from "react-router-dom"
+
 
 export default function Pizza() {
 
+
 const [pizzaCard, setPizzaCard] = useState ([])
+const { id } = useParams()
+
 useEffect (() =>{
-    fetch('http://localhost:5000/api/pizzas/p001')
+    fetch(`http://localhost:5000/api/pizzas/${id}`)
     .then((res) => res.json())
     .then((pizza)=>{
         setPizzaCard(pizza)

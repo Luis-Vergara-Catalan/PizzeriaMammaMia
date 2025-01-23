@@ -10,23 +10,22 @@ import { CartContext } from '../context/CartContext';
 
 
 function NavBar (){
-    const { totalPrice } = useContext(CartContext)
-    const token = true; /* Se utiliza en la variable booleana*/
+    const { totalPrice, token, logout } = useContext(CartContext)
+
     return (
       <Stack className='fondito' direction="horizontal" gap={3}>
         <Link to='/' className='logo m-3' style={{ textDecoration: 'none' }}><h4> <PiPizza />  Pizzeria Mamma Mia! </h4></Link>
           <div className="p-2 ms-auto">
             { token ? ( /* Variable booleana  esto se cumple cuando la condición es verdadero*/
                 <>
-                  <Link to='/Login' className='btn btn-outline-light m-1'> <RiLock2Line /> Login</Link>
-                  <Link to='/Register' className='btn btn-outline-light m-1'> <RiLock2Line /> Register</Link>
                   <Link to='/Profile' className='btn btn-outline-light m-1'> <RiLockUnlockLine /> Profile</Link>
+                  <Link onClick={() => logout()} className='btn btn-outline-light m-2'> <RiLockPasswordLine /> Logout</Link>
                 </>    
               ) : (/* esto se cumple cuando la condición es falsa*/
-                
-                  
-                  <Link to='/Logout' className='btn btn-outline-light m-2'> <RiLockPasswordLine /> Logout</Link>
-                
+                <>
+                  <Link to='/Login' className='btn btn-outline-light m-1'> <RiLock2Line /> Login</Link>
+                  <Link to='/Register' className='btn btn-outline-light m-1'> <RiLock2Line /> Register</Link>
+                </>
                   )
             }
             {/* <Link to='/Cart' className='btn btn-outline-light BotonTotal m-2'> <TiShoppingCart /> Total: $ {formatCurr(total)}</Link> */}

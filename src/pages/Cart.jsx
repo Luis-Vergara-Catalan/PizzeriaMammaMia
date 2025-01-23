@@ -9,7 +9,7 @@ import { CartContext } from '../context/CartContext';
 
 function Cart() {
 
-const { totalPrice, pizzas} = useContext(CartContext)
+const { totalPrice, pizzas, token} = useContext(CartContext)
 
   return (
     
@@ -17,6 +17,7 @@ const { totalPrice, pizzas} = useContext(CartContext)
     <h1 className='tituloCart'>Detalles del pedido:</h1>
     {
       pizzas.map((pizza, index) => {
+      
 
       return (<div className='d-flex' key={pizza.id}>
       <Container>
@@ -54,6 +55,7 @@ const { totalPrice, pizzas} = useContext(CartContext)
       })
     } 
     <h1 className='tituloCart'>Precio total: $ {formatCurr(totalPrice)} </h1> 
+    <Button disabled={!token} className='pagar text-white p-4 rounded mt-2'>Pagar</Button>
     </div>
   )
 }

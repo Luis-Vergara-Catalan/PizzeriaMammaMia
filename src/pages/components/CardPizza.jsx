@@ -6,11 +6,12 @@ import { PiEyesFill, PiPizza } from "react-icons/pi"; /*ojitos */
 import { formatCurr } from '../../utils/formatCurr';
 import { useContext } from 'react';
 import { CartContext } from '../../context/CartContext';
+import { Link } from "react-router-dom";
 
 export default function CardPizza (){
     const { addToCart, pizzas } = useContext(CartContext);
         if (!pizzas.length) {
-        return <p>Loading pizzas...</p>;
+        return <p>Cargando pizzas...</p>;
     }
 
     return (
@@ -29,7 +30,7 @@ export default function CardPizza (){
             </ListGroup>
             <Card.Body>
                 <ListGroup.Item className="Precio">Precio:$ {formatCurr(data.price)}</ListGroup.Item>
-                    <Button variant="outline-dark" className="botoncito">Ver Más <PiEyesFill /></Button>
+                    <Link to={`/pizza/${data.id}`} className='btn btn-light m-2'> Ver Más <PiEyesFill /> </Link>
                     <Button onClick={() => addToCart(data)} variant="dark" className="botoncito">Añadir <TiShoppingCart /></Button>
             </Card.Body>
         </Card>
