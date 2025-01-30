@@ -4,28 +4,30 @@ import Form from 'react-bootstrap/Form';
 
 const Register = () => {
 
- const [email,setEmail] = useState("");
- const [password, setPassword] = useState("");
- const [confirmPassword, setConfirmPassword] = useState("");
-  
- const handleSubmit = (e) =>{
-    e.preventDefault();
-    if (email === "" || password === "" || confirmPassword === ""){
-        alert('Todos los campos son obligatorios');
-        return false;
-    }
-    if (password.length < 6){
-        alert('El password debe tener al menos 6 caracteres');
-        return false;
-    }
-    if (password !== confirmPassword){
-        alert('El password debe coincidir');
-        return false
-    }
+const {token, register} = useUserContext();
+  const [email,setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState('');
 
-    alert('Datos enviados con exito');
-    return true;
- } 
+  if (token) return <Navigate to="/home" />;
+  
+ const handleSubmit = async (e) => {
+    e.preventDefault();
+    setMessage("");
+
+    if (!email || !password) {
+            setMessage('Todos los campos son obligatorios.');
+        } else if (password.length < 6) {
+            setMessage('La contraseña debe tener al menos 6 caracteres.');
+        } else {
+            try {
+                await register(email, password);
+                setMessage('Inicio de sesión');
+            } catch (error) {
+                setMessage('Error en el iniciar la sesión');
+            }
+        }
+    };
   return (
     <div>
     
@@ -48,7 +50,7 @@ const Register = () => {
           Login
         </Button>
       </Form>
-    
+    {message && <p>{message}</p>}
     </div>
   )
 }
